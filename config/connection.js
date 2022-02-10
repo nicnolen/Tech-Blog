@@ -12,6 +12,7 @@ let sequelize;
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
+  // otherwise use our local database
   // Create connection to our database, pass in your MySQL information for username and password
   sequelize = new Sequelize(
     process.env.DB_NAME,
