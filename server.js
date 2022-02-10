@@ -6,11 +6,27 @@ const path = require('path');
 /* DEPENDENCIES */
 // Import express.js
 const express = require('express');
-// Import Sequelize
-const sequelize = require('./config/connection');
+// Import and configure the dotenv dependency so we can use process.env for sensitive information
+require('dotenv').config();
+// Import express-session to let us connect to the backend
+const session = require('express-session');
+// Import connect-session-sequelize to automatically store the sessions created by express-session into our database
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // Import Handlebars.js
 const exphbs = require('express-handlebars');
+// Import Sequelize
+const sequelize = require('./config/connection');
 
+// set up Express.js session and connect the session to Sequelize database
+const sess = {
+  secret: process.env.SESSION_SECRET, // session cookie id
+  cookie: {}, // tell session to use cookies
+  resave: false, // wont force the session to be saved back to session store without modifications
+  saveUninitialized: false, // wont force uninitialized sessions to be saved to the store. A session is uninitialized when it is new but not modified
+  store: new SequelizeStore({
+    db: sequelize,
+  }), // creates a new session store with the database as sequelize
+};
 // Provide a port dynamically
 const PORT = process.env.PORT || 3001;
 // Assign express.js as a variable
