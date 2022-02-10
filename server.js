@@ -27,10 +27,14 @@ const sess = {
     db: sequelize,
   }), // creates a new session store with the database as sequelize
 };
+
 // Provide a port dynamically
 const PORT = process.env.PORT || 3001;
 // Assign express.js as a variable
 const app = express();
+
+// allow the app to use the session
+app.use(session(sess));
 
 // Create a new helper
 const hbs = exphbs.create({});
