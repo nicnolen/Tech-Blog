@@ -18,8 +18,8 @@ const exphbs = require('express-handlebars');
 /* FILE PATHS */
 // Import Sequelize file path
 const sequelize = require('./config/connection');
-// Import the conntrollers file path
-const routes = require('./controllers');
+// Import the routes file path
+const routes = require('./routes');
 
 // set up Express.js session and connect the session to Sequelize database
 const sess = {
