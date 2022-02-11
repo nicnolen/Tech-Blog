@@ -28,7 +28,7 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        //
+        // Validate that this is a url
         isURL: true,
       },
     },
