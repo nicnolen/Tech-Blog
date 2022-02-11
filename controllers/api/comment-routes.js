@@ -4,7 +4,14 @@ const router = require('express').Router();
 const { Comment } = require('../../models');
 
 // GET /api/comments (find all comments)
-router.get('/', (req, res) => {});
+router.get('/', (req, res) => {
+  Comment.findAll()
+    .then(dbCommentData => res.json(dbCommentData))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json(err);
+    });
+});
 
 // GET api/comments/:id (find comment by id)
 router.get('/:id', (req, res) => {});
