@@ -1,7 +1,7 @@
 /* ROUTES FOR THE POST MODEL (/api/posts) */
 // Import Express.js Router() and the User and Post model
 const router = require('express').Router();
-const { Post, User } = require('../../models'); // include User model as well because we want information about each post and the user that posted it
+const { Post, User, Comment } = require('../../models'); // include User model as well because we want information about each post and the user that posted it
 
 // GET all users
 router.get('/', (req, res) => {
@@ -13,6 +13,16 @@ router.get('/', (req, res) => {
     order: [['created_at', 'DESC']],
     // join to the user table
     include: [
+      // include Comment model
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        include: {
+          model: User,
+          attrbutes: ['username'],
+        },
+      },
+      // include User model
       {
         model: User,
         attributes: ['username'],
