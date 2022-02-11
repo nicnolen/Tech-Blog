@@ -39,5 +39,10 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET login route
+router.get('/login', (req, res) => {
+  res.render('login');
+});
+
 // Export the module
 module.exports = router;
