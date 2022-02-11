@@ -56,11 +56,19 @@ User.init(
   {
     // add in hooks (javascript functions). We want the hook to fire just before a new User is created
     hooks: {
-      // set up beforeCreate lifecycle "hook" functionality
+      // set up beforeCreate lifecycle "hook" functionality for creating new users
       // NOTE: userData contains prehasing data, newUserData contains post hashing data
       async beforeCreate(newUserData) {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
+      },
+      // set up beforeCreate hook for updating users
+      async beforeUpdate(updatedUserData) {
+        updatedUserData.password = await bcrypt.hash(
+          updatedUserData.password,
+          10
+        );
+        return updatedUserData;
       },
     },
     // pass in imported sequelize connection (the direct connection to our database)
