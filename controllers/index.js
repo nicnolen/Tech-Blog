@@ -5,6 +5,7 @@ const router = require('express').Router();
 // Import the homeRoutes file
 const homeRoutes = require('./home-routes.js');
 
+
 // Allow the router to use the homeRoutes file
 router.use('/', homeRoutes);
 
