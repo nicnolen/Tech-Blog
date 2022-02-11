@@ -10,10 +10,24 @@ router.get('/', (req, res) => {});
 router.get('/:id', (req, res) => {});
 
 // POST api/comments (create new comment)
-router.post('/', (req, res) => {});
+router.post('/', (req, res) => {
+  Comment.create({
+    comment_text: req.body.comment_text,
+    user_id: req.body.user_id,
+    post_id: req.body.post_id,
+  })
+    .then(dbCommentData => res.json(dbCommentData))
+    .catch(err => {
+      console.error(err);
+      res.status(400).json(err);
+    });
+});
 
 // PUT api/comments/:id (update comment by id)
 router.put('/:id', (req, res) => {});
 
 // DELETE api/comments/:id (delete comment by id)
 router.delete('/:id', (req, res) => {});
+
+// Export the module
+module.exports = router;
