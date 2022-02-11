@@ -59,6 +59,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/'));
 
 // Turn on connection to db and server
+// NOTE if you change force to `true` then the database must sync with the model definitions and associations, making the tables re-create after any association change
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.info(`Now listening on port ${PORT}`));
 });
