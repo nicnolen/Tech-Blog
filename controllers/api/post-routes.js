@@ -10,6 +10,8 @@ router.get('/', (req, res) => {
   Post.findAll({
     // specify which attributes we are looking for
     attributes: ['id', 'post_url', 'title', 'created_at'],
+    // order the posts to show the latest news first (decending order)
+    order: [['created_at', 'DESC']],
     // join to the user table
     include: [
       {
