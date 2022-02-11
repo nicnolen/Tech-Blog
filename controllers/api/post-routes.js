@@ -67,5 +67,29 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+// UPDATE a new post
+router.put('/:id', (req, res) => {
+  Post.update(
+    {
+      title: req.body.title,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then(dbPostData => {
+      if (!dbPostData) {
+        res.status(404).json({ message: 'No post found with this id' });
+      }
+      res.json(dbPostData);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json(err);
+    });
+});
 // Export the module
 module.exports = router;
