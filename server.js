@@ -16,10 +16,8 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const exphbs = require('express-handlebars');
 
 /* FILE PATHS */
-// Import Sequelize file path
+// Import connection to Sequelize
 const sequelize = require('./config/connection');
-// Import the routes file path
-const routes = require('./routes');
 
 // set up Express.js session and connect the session to Sequelize database
 const sess = {
@@ -58,8 +56,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Allow the app to use the controllers
 app.use(require('./controllers/'));
 
-// Turn on connection to db and server
-// NOTE if you change force to `true` then the database must sync with the model definitions and associations, making the tables re-create after any association change
+// Establish connection to the database. (Sync means that Sequelize is taking the models and connecting them to associated database tables)
+// NOTE if you change force to `true` then Sequelize will drop and recreate all database tables on start
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.info(`Now listening on port ${PORT}`));
 });

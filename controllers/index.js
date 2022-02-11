@@ -1,9 +1,14 @@
 /* COLLECT THE PACKAGED API ROUTES AND PREFIX WITH /api */
-// Import Express.js Router
+// Import the Express.js Router function to define the way requests are handled
 const router = require('express').Router();
+
 // Import the api folder
 const apiRoutes = require('./api');
+// Import the homeRoutes file
+const homeRoutes = require('./home-routes.js');
 
+// Allow the router to use the homeRoutes file
+router.use('/', homeRoutes);
 // Allow the routers to use the api endpoints and prefix them with the path /api
 router.use('/api', apiRoutes);
 
@@ -12,5 +17,5 @@ router.use((req, res) => {
   res.status(404).end();
 });
 
-// Export the file
+// Export the module
 module.exports = router;
