@@ -1,6 +1,5 @@
 /* HANDLES ALL POST DATA TRANSACTIONS BETWEEN THE POST API AND THE MySQL DATABASE */
 // Import the Model class and DataTypes object from Sequelize
-// Model class is used to create our own models from using the extends keyword
 const { Model, DataTypes } = require('sequelize');
 // Import Sequelize
 const sequelize = require('../config/connection');
@@ -12,16 +11,19 @@ class Post extends Model {}
 Post.init(
   // TABLE COLUMNS
   {
+    // post id
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
+    // title of post
     title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // url of the post
     post_url: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -30,8 +32,10 @@ Post.init(
         isURL: true,
       },
     },
+    // id of the user
     user_id: {
       type: DataTypes.INTEGER,
+      // foreign key
       references: {
         model: 'user',
         key: 'id',

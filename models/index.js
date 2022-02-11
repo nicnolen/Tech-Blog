@@ -1,8 +1,8 @@
 /* USED FOR CREATING AND EXPORTING MODEL DATA */
-// Import the User model
+// Import modules
 const User = require('./User');
-// Import the Post model
 const Post = require('./Post');
+const Comment = require('./Comment');
 
 // Expect the module
-module.exports = { User, Post };
+module.exports = { User, Post, Comment };
