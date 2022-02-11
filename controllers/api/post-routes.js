@@ -1,7 +1,6 @@
 /* ROUTES FOR THE POST MODEL (/api/posts) */
 // Import Express.js Router() and the User and Post model
 const router = require('express').Router();
-const { compareSync } = require('bcrypt');
 const { Post, User } = require('../../models'); // include User model as well because we want information about each post and the user that posted it
 
 // GET all users
