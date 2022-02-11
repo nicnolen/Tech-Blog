@@ -27,7 +27,6 @@ Comment.init(
     // user id
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       // foreign key
       references: {
         model: 'user',
