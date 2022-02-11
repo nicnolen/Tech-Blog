@@ -35,6 +35,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /api/users (create a new user)
+// NOTE: inserting data using the keys defined in the User model and the values from req.body
 router.post('/', (req, res) => {
   // expects {username: 'Name', email: 'name@gmail.com', password: 'password1234'}
   User.create({
@@ -50,7 +51,27 @@ router.post('/', (req, res) => {
 });
 
 // PUT /api/users/1 (update user by id)
-router.put('/:id', (req, res) => {});
+router.put('/:id', (req, res) => {
+  // expects {username: 'Name', email: 'name@gmail.com', password: 'password1234'}
+  // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
+  // NOTE: req.body is the new data you want to update, req.params.id is where you want the new data to be used
+  User.update(req.body, {
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then(dbUserData => {
+      if (!dbUserData[0]) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json(err);
+    });
+});
 
 // DELETE /api/users/1 (delete a user by id)
 router.delete('/:id', (req, res) => {});
