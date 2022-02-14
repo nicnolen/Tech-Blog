@@ -16,4 +16,14 @@ module.exports = {
     }
     return word;
   },
+
+  // Constructor function to shorten URL
+  format_url: url => {
+    return url
+      .replace('http://', '')
+      .replace('https://', '')
+      .replace('www.', '')
+      .split('/')[0]
+      .split('?')[0];
+  },
 };
