@@ -28,7 +28,8 @@ async function signupFormHandler(event) {
 
     // check response status
     if (response.ok) {
-      console.info('success');
+      errorEl.innerHTML = '';
+      document.location.replace('/homepage/');
     } else {
       errorEl.innerHTML = response.statusText;
     }
