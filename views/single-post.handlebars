@@ -1,0 +1,24 @@
+<!-- PAGE TO VIEW A POSTED ARTICLE IN DETAIL -->
+<!-- Partial -->
+{{> post-info post}}
+
+<!-- Comment form -->
+{{#if loggedIn}}
+  <form class='comment-form'>
+    <div>
+      <textarea name='comment-body'></textarea>
+    </div>
+
+    <div>
+      <button type='submit'>Add Comment</button>
+    </div>
+  </form>
+{{/if}}
+
+<!-- Comment partial -->
+{{> comments post.comments}}
+
+<!-- References -->
+{{#if loggedIn}}
+  <script src='/javascript/comment.js'></script>
+{{/if}}
