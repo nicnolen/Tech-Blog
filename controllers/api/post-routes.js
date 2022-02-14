@@ -1,7 +1,8 @@
 /* ROUTES FOR THE POST MODEL (/api/posts) */
-// Import Express.js Router() and the User and Post model
+// Import Express.js Router(), the User, Post, and Comment models, and our authentication function
 const router = require('express').Router();
 const { Post, User, Comment } = require('../../models'); // include User model as well because we want information about each post and the user that posted it
+const withAuth = require('../../utils/auth'); // authenticate the user before allowing them to make changes
 
 // GET all users
 router.get('/', (req, res) => {
@@ -38,7 +39,7 @@ router.get('/', (req, res) => {
 });
 
 // GET a single post
-router.get('/:id', (req, res) => {
+router.get('/:id', withAuth, (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
@@ -75,7 +76,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST a new post
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
   Post.create({
     title: req.body.title,
@@ -90,7 +91,7 @@ router.post('/', (req, res) => {
 });
 
 // UPDATE a new post
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Post.update(
     {
       title: req.body.title,
@@ -114,7 +115,7 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE a post
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   Post.destroy({
     where: {
       id: req.params.id,
