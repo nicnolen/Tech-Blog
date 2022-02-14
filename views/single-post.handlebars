@@ -16,15 +16,17 @@
 </article>
 
 <!-- Comment form -->
-<form class='comment-form'>
-  <div>
-    <textarea name='comment-body'></textarea>
-  </div>
+{{#if loggedIn}}
+  <form class='comment-form'>
+    <div>
+      <textarea name='comment-body'></textarea>
+    </div>
 
-  <div>
-    <button type='submit'>Add Comment</button>
-  </div>
-</form>
+    <div>
+      <button type='submit'>Add Comment</button>
+    </div>
+  </form>
+{{/if}}
 
 <!-- Comments -->
 <div class='comments'>
@@ -46,4 +48,6 @@
 </div>
 
 <!-- References -->
-<script src='/javascript/comment.js'></script>
+{{#if loggedIn}}
+  <script src='/javascript/comment.js'></script>
+{{/if}}
