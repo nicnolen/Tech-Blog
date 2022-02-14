@@ -18,6 +18,8 @@ const exphbs = require('express-handlebars');
 /* FILE PATHS */
 // Import connection to Sequelize
 const sequelize = require('./config/connection');
+// Import helper functions
+const helpers = require('./utils/helpers');
 
 // set up Express.js session and connect the session to Sequelize database
 const sess = {
@@ -39,7 +41,7 @@ const app = express();
 app.use(session(sess));
 
 // Create a new helper
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 
 // Set Handlebars.js as app's template engine choice
 app.engine('handlebars', hbs.engine);
