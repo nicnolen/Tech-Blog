@@ -50,5 +50,21 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// GET post by id (single post)
+router.get('/post/:id', (req, res) => {
+  const post = {
+    id: 1,
+    post_url: 'https://handlebarsjs.com/guide/',
+    title: 'Handlebars Docs',
+    created_at: new Date(),
+    comments: [{}, {}],
+    user: {
+      username: 'test_user',
+    },
+  };
+
+  res.render('single-post', { post });
+});
+
 // Export the module
 module.exports = router;
