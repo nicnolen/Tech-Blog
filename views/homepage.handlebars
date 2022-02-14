@@ -4,21 +4,8 @@
   <!-- NOTE: variable name is declared using as |variable name| -->
   {{#each posts as |post|}}
     <li>
-      <article class='post'>
-        <div class='title'>
-          <a href='{{post.post_url}}' target='_blank'>{{post.title}}</a>
-          <span>({{post_url}})</span>
-        </div>
-        <div class='meta'>
-          {{post.vote_count}}
-          point(s) by
-          {{post.user.username}}
-          on
-          {{post.created_at}}
-          |
-          <a href='/post/{{post.id}}'>{{post.comments.length}} comment(s)</a>
-        </div>
-      </article>
+      <!-- partial. NOTE: > character symbolizes a partial and thats followed by the name of the partial file and the object being passed -->
+      {{> post-info post }}
     </li>
   {{/each}}
 </ol>
