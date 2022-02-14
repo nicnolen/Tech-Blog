@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
       // Use res.render to specify which template you want to use as the first argument
       // And an object that includes the data you want to pass into the template as the second argument
       // NOTE .get({ plain: true }) converts Sequelize object down to a plain object
-      res.render('homepage', { posts });
+      res.render('homepage', { posts, loggedIn: req.session.loggedIn });
     })
     .catch(err => {
       console.error(err);
