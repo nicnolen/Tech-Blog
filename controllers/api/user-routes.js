@@ -94,6 +94,18 @@ router.post('/login', (req, res) => {
   });
 });
 
+// POST route to logout
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      // 204 tells client that request succeeded
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
 // PUT /api/users/1 (update user by id)
 router.put('/:id', (req, res) => {
   // expects {username: 'Name', email: 'name@gmail.com', password: 'password1234'}
