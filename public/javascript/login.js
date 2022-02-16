@@ -1,7 +1,7 @@
 /* FRONT END JAVASCRIPT CODE FOR THE LOGIN PAGE */
 // REFERENCES
 // Reference error messages
-var errorEl = document.getElementById('error-message');
+const errorEl = document.getElementById('error-message');
 
 // HANDLER FUNCTIONS
 // Function to handle signup form
@@ -29,7 +29,7 @@ async function signupFormHandler(event) {
     // check response status
     if (response.ok) {
       errorEl.innerHTML = '';
-      document.location.replace('/homepage/');
+      document.location.replace('/dashboard/');
     } else {
       errorEl.innerHTML = response.statusText;
     }
