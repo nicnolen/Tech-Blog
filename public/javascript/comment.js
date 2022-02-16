@@ -1,7 +1,5 @@
 /* ADD COMMENTS */
 // REFERENCES
-// Reference error messages
-var errorEl = document.getElementById('error-message');
 
 // Comment form handler
 async function commentFormHandler(event) {

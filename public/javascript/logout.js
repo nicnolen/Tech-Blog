@@ -1,7 +1,7 @@
 /* LOGOUT ROUTES */
 // REFERENCES
 // Reference error messages
-var errorEl = document.getElementById('error-message');
+const errorEl = document.getElementById('error-message');
 
 // EVENT HANDLERS
 // Event handler for logout route
