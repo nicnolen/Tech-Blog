@@ -1,6 +1,6 @@
 /* FRONT END FOR ADDING A POST */
-// Reference error messages
-const errorEl = document.getElementById('error-message');
+// // Reference error messages
+// const errorEl = document.getElementById('error-message');
 
 // Form handler to grab post-title and port-url values and send them with a POST request to /api/posts
 async function newFormHandler(event) {
