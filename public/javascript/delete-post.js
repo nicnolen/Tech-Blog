@@ -1,7 +1,4 @@
 /* FRONT END LOGIC TO DELETE A POST */
-// Reference error messages
-const errorEl = document.getElementById('error-message');
-
 // Function handler to delete a post
 async function deleteFormHandler(event) {
   event.preventDefault();
