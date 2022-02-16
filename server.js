@@ -51,7 +51,7 @@ app.set('view engine', 'handlebars');
 // Let express know we want the data in JSON format
 app.use(express.json());
 // What kind of encoding we want to do
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 // Takes the contents of the `public` folder and makes them static assets so we can use the front-end files
 app.use(express.static(path.join(__dirname, 'public')));
 
