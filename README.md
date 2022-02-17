@@ -45,7 +45,7 @@ You must also install the Express.js npm package to run the server. Since Expres
 
 ## Usage Instructions
 
-To see and use the deployed site, follow this link to Heroku: https://just--tech--news.herokuapp.com/
+To see and use the deployed site, follow this link to Heroku: https://tech--blog--application.herokuapp.com/
 
 1. After following the link, click the login button at the top right of the screen to be navigated to the login page.
 
