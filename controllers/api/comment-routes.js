@@ -53,6 +53,7 @@ router.get('/:id', withAuth, (req, res) => {
 
 // POST api/comments (create new comment)
 router.post('/', withAuth, (req, res) => {
+  console.log(req);
   // check the session
   if (req.session) {
     // expects => {comment_text: "This is the comment", user_id: 1, post_id: 2}
@@ -60,7 +61,6 @@ router.post('/', withAuth, (req, res) => {
       comment_text: req.body.comment_text,
       user_id: req.session.user_id,
       post_id: req.body.post_id,
-      username: req.session.username,
     })
       .then(dbCommentData => {
         console.log(dbCommentData);
