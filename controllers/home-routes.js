@@ -1,7 +1,6 @@
 /* ALL USER-FACING ROUTES (Ex: HOME PAGE, LOGIN PAGE) */
 // Import the Express.js Router, Sequelize, and the models
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 
 // GET all posts for the home page route
@@ -9,26 +8,19 @@ router.get('/', (req, res) => {
   console.info(req.session);
   console.info('====================');
   Post.findAll({
-    attributes: ['id', 'post_url', 'title', 'created_at'],
     include: [
+      User,
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username'],
-        },
-      },
-      {
-        model: User,
-        attributes: ['username'],
+        include: [User],
       },
     ],
+    attributes: ['id', 'post_url', 'title', 'created_at'],
   })
     .then(dbPostData => {
       // loop over and map each Sequelize object into a serialized version, saving results in a new `posts` array
       const posts = dbPostData.map(post => post.get({ plain: true }));
-
       // Use res.render to specify which template you want to use as the first argument
       // And an object that includes the data you want to pass into the template as the second argument
       // NOTE .get({ plain: true }) converts Sequelize object down to a plain object
@@ -56,12 +48,7 @@ router.get('/post/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
-    attrbutes: [
-      'id',
-      'post_url',
-      'title',
-      'created_at',
-    ],
+    attrbutes: ['id', 'post_url', 'title', 'created_at'],
     include: [
       {
         model: Comment,
