@@ -59,6 +59,7 @@ router.post('/', withAuth, (req, res) => {
     Comment.create({
       comment_text: req.body.comment_text,
       user_id: req.body.user_id,
+      username: req.session.username,
       post_id: req.body.post_id,
     })
       .then(dbCommentData => res.json(dbCommentData))
@@ -98,8 +99,8 @@ router.put('/:id', withAuth, (req, res) => {
 router.delete('/:id', withAuth, (req, res) => {
   Comment.destroy({
     where: {
-      id: req.params.id
-    }
+      id: req.params.id,
+    },
   })
     .then(dbCommentData => {
       if (!dbCommentData) {

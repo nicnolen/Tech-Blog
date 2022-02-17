@@ -48,17 +48,14 @@ router.get('/post/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
-    attrbutes: ['id', 'post_url', 'title', 'created_at'],
+    attributes: ['id', 'post_url', 'title', 'created_at'],
     include: [
+      User,
       {
         model: Comment,
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username'],
-        },
+        include: [User],
       },
-      { model: User, attributes: ['username'] },
     ],
   })
     .then(dbPostData => {
