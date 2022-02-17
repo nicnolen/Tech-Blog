@@ -74,7 +74,7 @@ Jest was used to test the helper functions, which are functions that can be call
 
 ![Passing Tests](https://user-images.githubusercontent.com/88728912/154498773-3b3107dc-8c94-4242-9005-68ceabadb2d4.png)
 
-## Insomnia
+### Insomnia
 
 Insomnia was used to seed and test the routes for this app. There is no command for running these tests. 
 1. To test the application, download insomnia. For more information on Insomnia, follow this link: https://docs.insomnia.rest/.
